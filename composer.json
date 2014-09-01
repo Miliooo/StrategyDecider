@@ -1,0 +1,36 @@
+{
+    "name": "milio/strategy-decider",
+    "description": "Plates, the native PHP template system that’s fast, easy to use and easy to extend.",
+    "keywords": [
+        "affirmative",
+        "consensus",
+        "unanimous",
+        "vote",
+        "decider"
+
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michiel Boeckaert",
+            "email": "boeckaert@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Milio\\StrategyDecider\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
