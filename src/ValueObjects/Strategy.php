@@ -3,14 +3,20 @@
 namespace Milio\StrategyDecider\ValueObjects;
 
 use Milio\StrategyDecider\Exceptions\InvalidStrategyException;
+use Milio\StrategyDecider\StrategyDeciderInterface;
 
 /**
- * Class Strategy
+ * This value object guards that the strategy is valid.
+ *
+ * Strategy should be one of the STRATEGY_ class constants in StrategyDeciderInterface
  *
  * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class Strategy
 {
+    /**
+     * @var string A valid strategy name.
+     */
     private $strategy;
 
     /**
@@ -50,7 +56,21 @@ class Strategy
      */
     private function guardValidStrategy($strategy)
     {
-        if (!is_string($strategy) || !in_array($strategy, ['consensus', 'affirmative', 'unanimous'], true)) {
+        if (
+            !is_string($strategy)
+            ||
+            !in_array(
+                $strategy,
+                [
+                    StrategyDeciderInterface::STRATEGY_AFFIRMATIVE,
+                    StrategyDeciderInterface::STRATEGY_AFFIRMATIVE_OR_ALL_ABSTAIN,
+                    StrategyDeciderInterface::STRATEGY_CONSENSUS_NO,
+                    StrategyDeciderInterface::STRATEGY_CONSENSUS_YES,
+                    StrategyDeciderInterface::STRATEGY_UNANIMOUS,
+                ],
+                true
+            )
+        ) {
             throw new InvalidStrategyException();
         }
     }

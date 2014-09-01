@@ -2,6 +2,8 @@
 
 namespace Milio\StrategyDecider\ValueObjects;
 
+use Milio\StrategyDecider\StrategyDeciderInterface;
+
 /**
  * Test file for Strategy
  *
@@ -15,7 +17,7 @@ class StrategyTest extends \PHPUnit_Framework_TestCase
      * @dataProvider InvalidDataProvider
      * @expectedException \Milio\StrategyDecider\Exceptions\InvalidStrategyException
      */
-    public function it_should_throw_an_exception_when_not_valid_strategy($value)
+    public function it_should_throw_InvalidStrategyException_when_not_valid_strategy($value)
     {
         new Strategy($value);
     }
@@ -29,10 +31,12 @@ class StrategyTest extends \PHPUnit_Framework_TestCase
     {
         $strategy = new Strategy($value);
         $this->assertEquals($value, $strategy->getStrategy(), 'get failure');
-        $this->assertEquals($value, (string) $strategy, 'tostring failure');
+        $this->assertEquals($value, (string) $strategy, 'toString failure');
     }
 
     /**
+     * DataProvider
+     *
      * @return array
      */
     public function invalidDataProvider()
@@ -45,18 +49,25 @@ class StrategyTest extends \PHPUnit_Framework_TestCase
             [false],
             [true],
             [0],
+            [new \stdClass()]
         ];
     }
 
     /**
+     * DataProvider
+     *
+     * Although we should only rely on the constants let's check the real values too. They should never change.
+     *
      * @return array
      */
     public function validDataProvider()
     {
         return [
-            ['consensus'],
-            ['unanimous'],
-            ['affirmative']
+            [StrategyDeciderInterface::STRATEGY_AFFIRMATIVE],
+            [StrategyDeciderInterface::STRATEGY_AFFIRMATIVE_OR_ALL_ABSTAIN],
+            [StrategyDeciderInterface::STRATEGY_CONSENSUS_YES],
+            [StrategyDeciderInterface::STRATEGY_CONSENSUS_NO],
+            [StrategyDeciderInterface::STRATEGY_UNANIMOUS]
         ];
     }
 }
