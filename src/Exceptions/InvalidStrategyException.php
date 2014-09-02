@@ -9,5 +9,4 @@ namespace Milio\StrategyDecider\Exceptions;
  */
 class InvalidStrategyException extends \InvalidArgumentException implements StrategyDeciderExceptionInterface
 {
-
 }

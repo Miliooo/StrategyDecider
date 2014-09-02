@@ -2,8 +2,6 @@
 
 namespace Milio\StrategyDecider\ValueObjects;
 
-use Milio\StrategyDecider\StrategyDeciderInterface;
-
 /**
  * Class VoteTest
  *
@@ -63,9 +61,9 @@ class VoteTest extends \PHPUnit_Framework_TestCase
     public function validDataProvider()
     {
         return [
-            [StrategyDeciderInterface::VOTE_NO],
-            [StrategyDeciderInterface::VOTE_YES],
-            [StrategyDeciderInterface::VOTE_ABSTAIN],
+            [Vote::VOTE_NO],
+            [Vote::VOTE_YES],
+            [Vote::VOTE_ABSTAIN],
             [0],
             [-1],
             [1]

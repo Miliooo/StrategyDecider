@@ -2,18 +2,19 @@
 
 namespace Milio\StrategyDecider\ValueObjects;
 
-use Milio\StrategyDecider\StrategyDeciderInterface;
 use Milio\StrategyDecider\Exceptions\InvalidVoteException;
 
 /**
  * This value objects makes sure the votes are valid.
  *
- * Votes should be one of the VOTE class constants found in StrategyDeciderInterface
- *
  * @author Michiel Boeckaert <boeckaert@gmail.com>
  */
 class Vote
 {
+    CONST VOTE_YES = 1;
+    CONST VOTE_ABSTAIN = 0;
+    CONST VOTE_NO = -1;
+
     /**
      * @var string A valid vote
      */
@@ -53,9 +54,9 @@ class Vote
             (
                 $vote,
                 [
-                    StrategyDeciderInterface::VOTE_YES,
-                    StrategyDeciderInterface::VOTE_ABSTAIN,
-                    StrategyDeciderInterface::VOTE_NO,
+                    self::VOTE_YES,
+                    self::VOTE_ABSTAIN,
+                    self::VOTE_NO,
                 ],
                 true
             )

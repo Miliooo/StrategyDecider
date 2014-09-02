@@ -9,5 +9,4 @@ namespace Milio\StrategyDecider\Exceptions;
  */
 interface StrategyDeciderExceptionInterface
 {
-
 }
